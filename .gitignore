@@ -1,0 +1,9 @@
+# Rust 构建产物（体积大，不进仓）
+target/
+# 系统文件
+Thumbs.db
+Desktop.ini
+# 编輯器
+.vscode/
+.idea/
+*.swp
