@@ -349,7 +349,7 @@ fn tr(l: Lang, k: &str) -> &'static str {
         (Lang::Cn, "sec_protection") => "保持策略",
         (Lang::En, "sec_protection") => "Protection",
         (Lang::Cn, "chk_enabled") => "启用保持（防睡眠，AI agent 可正常运行）",
-        (Lang::En, "chk_enabled") => "Enable protection (anti-sleep, keeps AI agents running)",
+        (Lang::En, "chk_enabled") => "Enable protection (anti-sleep, AI agents stay awake)",
         (Lang::Cn, "chk_display") => "显示器常亮（防熄屏）",
         (Lang::En, "chk_display") => "Keep display on (no dim / off)",
         (Lang::Cn, "chk_away") => "AwayMode 保网络（笔记本不断网）",
@@ -809,7 +809,7 @@ impl App {
 
         // 设置窗口（默认隐藏）
         nwg::Window::builder()
-            .size((440, 478))
+            .size((496, 492))
             .position((400, 200))
             .title(tr(lang, "win_title"))
             .flags(nwg::WindowFlags::WINDOW)
@@ -819,13 +819,13 @@ impl App {
         nwg::Label::builder()
             .text(tr(lang, "app_title"))
             .font(Some(&self.font_title))
-            .size((408, 30))
+            .size((464, 30))
             .position((16, 10))
             .parent(&self.win)
             .build(&mut self.lbl_title)?;
         nwg::Label::builder()
             .text(tr(lang, "subtitle"))
-            .size((408, 22))
+            .size((464, 22))
             .position((16, 40))
             .parent(&self.win)
             .build(&mut self.lbl_subtitle)?;
@@ -834,35 +834,35 @@ impl App {
         nwg::Label::builder()
             .text(tr(lang, "sec_protection"))
             .font(Some(&self.font_section))
-            .size((408, 24))
+            .size((464, 24))
             .position((16, 68))
             .parent(&self.win)
             .build(&mut self.lbl_sec1)?;
         nwg::CheckBox::builder()
             .text(tr(lang, "chk_enabled"))
             .check_state(check_state(cfg.enabled))
-            .size((384, 24))
+            .size((440, 24))
             .position((28, 94))
             .parent(&self.win)
             .build(&mut self.chk_enabled)?;
         nwg::CheckBox::builder()
             .text(tr(lang, "chk_display"))
             .check_state(check_state(cfg.display))
-            .size((384, 24))
+            .size((440, 24))
             .position((28, 120))
             .parent(&self.win)
             .build(&mut self.chk_display)?;
         nwg::CheckBox::builder()
             .text(tr(lang, "chk_away"))
             .check_state(check_state(cfg.away))
-            .size((384, 24))
+            .size((440, 24))
             .position((28, 146))
             .parent(&self.win)
             .build(&mut self.chk_away)?;
         nwg::CheckBox::builder()
             .text(tr(lang, "chk_jiggle"))
             .check_state(check_state(cfg.jiggle))
-            .size((384, 24))
+            .size((440, 24))
             .position((28, 172))
             .parent(&self.win)
             .build(&mut self.chk_jiggle)?;
@@ -871,35 +871,35 @@ impl App {
         nwg::Label::builder()
             .text(tr(lang, "sec_intervals"))
             .font(Some(&self.font_section))
-            .size((408, 24))
+            .size((464, 24))
             .position((16, 204))
             .parent(&self.win)
             .build(&mut self.lbl_sec2)?;
         nwg::Label::builder()
             .text(tr(lang, "lbl_interval"))
             .h_align(nwg::HTextAlign::Left)
-            .size((210, 24))
+            .size((240, 24))
             .position((28, 230))
             .parent(&self.win)
             .build(&mut self.lbl_interval)?;
         nwg::TextInput::builder()
             .text(&cfg.interval.to_string())
-            .size((160, 26))
-            .position((244, 228))
+            .size((180, 26))
+            .position((272, 230))
             .parent(&self.win)
             .build(&mut self.txt_interval)?;
 
         nwg::Label::builder()
             .text(tr(lang, "lbl_jiggle"))
             .h_align(nwg::HTextAlign::Left)
-            .size((210, 24))
+            .size((240, 24))
             .position((28, 258))
             .parent(&self.win)
             .build(&mut self.lbl_jiggle)?;
         nwg::TextInput::builder()
             .text(&cfg.jiggle_interval.to_string())
-            .size((160, 26))
-            .position((244, 256))
+            .size((180, 26))
+            .position((272, 258))
             .parent(&self.win)
             .build(&mut self.txt_jiggle)?;
 
@@ -907,21 +907,21 @@ impl App {
         nwg::Label::builder()
             .text(tr(lang, "sec_system"))
             .font(Some(&self.font_section))
-            .size((408, 24))
+            .size((464, 24))
             .position((16, 290))
             .parent(&self.win)
             .build(&mut self.lbl_sec3)?;
         nwg::CheckBox::builder()
             .text(tr(lang, "chk_autostart"))
             .check_state(check_state(autostart_enabled()))
-            .size((384, 24))
+            .size((440, 24))
             .position((28, 314))
             .parent(&self.win)
             .build(&mut self.chk_autostart)?;
         nwg::CheckBox::builder()
             .text(tr(lang, "chk_english"))
             .check_state(check_state(cfg.lang == Lang::En))
-            .size((384, 24))
+            .size((440, 24))
             .position((28, 340))
             .parent(&self.win)
             .build(&mut self.chk_english)?;
@@ -931,7 +931,7 @@ impl App {
         nwg::Label::builder()
             .text(&status)
             .h_align(nwg::HTextAlign::Left)
-            .size((408, 46))
+            .size((464, 60))
             .position((16, 370))
             .parent(&self.win)
             .build(&mut self.lbl_status)?;
@@ -940,19 +940,19 @@ impl App {
         nwg::Button::builder()
             .text(tr(lang, "btn_apply"))
             .size((100, 32))
-            .position((100, 426))
+            .position((90, 440))
             .parent(&self.win)
             .build(&mut self.btn_apply)?;
         nwg::Button::builder()
             .text(tr(lang, "btn_ok"))
             .size((100, 32))
-            .position((208, 426))
+            .position((198, 440))
             .parent(&self.win)
             .build(&mut self.btn_ok)?;
         nwg::Button::builder()
             .text(tr(lang, "btn_cancel"))
             .size((100, 32))
-            .position((316, 426))
+            .position((306, 440))
             .parent(&self.win)
             .build(&mut self.btn_cancel)?;
 

@@ -1,6 +1,6 @@
 [package]
 name = "keepawake"
-version = "2.1.0"
+version = "2.1.1"
 edition = "2021"
 description = "Windows 防锁屏/防睡眠/保持网络小工具（托盘版）"
 
