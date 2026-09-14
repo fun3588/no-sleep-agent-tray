@@ -1,0 +1,16 @@
+[package]
+name = "keepawake"
+version = "2.1.2"
+edition = "2021"
+description = "Windows 防锁屏/防睡眠/保持网络小工具（托盘版）"
+
+[dependencies]
+native-windows-gui = { version = "1.0.13", default-features = false, features = ["tray-notification", "message-window", "menu", "cursor", "textbox", "notice", "image-decoder"] }
+winreg = "0.50"
+
+[build-dependencies]
+embed-resource = "3"
+
+[profile.release]
+opt-level = "s"
+strip = true
