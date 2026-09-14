@@ -7,7 +7,8 @@
 
 ### 尚未完成 / 待办 Todo
 - [ ] 左键双击托盘图标直接打开设置窗（目前只能右键菜单进，`OnContextMenu` 已有，缺左键处理）
-- [ ] 发 GitHub Release（目前二进制直接 `git push` 进 `dist/`，体积会越滚越大，后续建议转 Release 附件）
+- [ ] 发第一个 GitHub Release（workflow 已就绪：push `v*` tag 自动双架构编译并挂附件；`dist/` 快照保留，长期建议只发 Release 不再 push 二进制）
+  Cut the first GitHub Release (workflow ready: pushing a `v*` tag builds both arches and attaches exes).
 - [ ] `keepawake.go` 是 v1 时代的纯控制台单文件版，已过时（托盘版只有 Rust），要么删除要么标注废弃
 - [ ] 在真笔记本上验证“电源方案”调光路（当前只在台式机/虚拟机上验证了 WMI 路）
 - [ ] 英文界面下 giants 超长字符串的人工目检（目前只做了加宽到 480px + 程序化 dump，缺真机截图确认）
@@ -49,6 +50,9 @@
 - 2026-09-14：设置窗美化（三段式分区+粗体）与中英双语（`tr()` 表、`English UI` 即时切换、`--lang`），托盘菜单永久双语。自动化验证 CN/EN 各 19 控件、点击英文框整窗切换且 `config.ini` 写入 `lang=en`。
   Prettier settings dialog (sections + bold fonts) and CN/EN switch; verified 19 controls in each language plus click-to-switch with config persistence.
 - 2026-09-14：定仓名 `no-sleep-agent-tray`，代码搬到 `C:\code\no-sleep-agent-tray`，写 `README.md` + 本 `ai.md`，双架构编译产物进 `dist/` 随仓 push：`git init`、`git remote add origin …`、`git push -u origin main`（首个 commit `7ca3368`）。
+  Repo settled, dual-arch builds into `dist/`, first push commit `7ca3368`.
+- 2026-09-14：加 GitHub Release 自动化（`.github/workflows/release.yml`：push `v*` tag → Windows runner 双架构编译 → `softprops/action-gh-release` 挂 `keepawake-x64.exe` / `keepawake-arm64.exe` 附件）；README 下载节指向 Releases。
+  Added release automation (`v*` tag → dual-arch build → attached exes); README points to Releases.
   Repo settled at `C:\code\no-sleep-agent-tray`; dual-arch builds into `dist/`; first push commit `7ca3368`.
 - 2026-09-14：修英文界面字体溢出——设置窗加宽 440→480、状态行加高 46→60、输入框右移；`README.md` / `ai.md` 改全文双语（先中文后英文）；版本 2.1.1，双架构重编 push。
   Fixed EN overflow (dialog 440→480px, taller status row); both MDs rewritten fully bilingual (CN first); v2.1.1 rebuilt for both arches.

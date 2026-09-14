@@ -13,6 +13,9 @@
 
 ### 下载
 
+> 推荐从 [Releases](../../releases) 页下载最新版；`dist/` 下的是随仓提交的版本快照。
+> Recommended: grab the latest from [Releases](../../releases); `dist/` holds in-repo snapshots.
+
 | 版本 | 文件 | 说明 |
 |---|---|---|
 | x64 | `dist/keepawake-x64.exe` | Intel / AMD 64 位，最常见 |
@@ -68,6 +71,8 @@ cargo build --release --target aarch64-pc-windows-msvc
 > A Windows tray tool that prevents lock screen, sleep and network drops, keeping AI agents running stably for long sessions.
 
 ### Download
+
+> Recommended: grab the latest from [Releases](../../releases); `dist/` holds in-repo snapshots.
 
 | Version | File | Notes |
 |---|---|---|

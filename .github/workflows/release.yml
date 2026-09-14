@@ -1,0 +1,44 @@
+name: release
+
+# Cut a release by pushing a tag, e.g.:
+#   git tag v2.1.1
+#   git push origin v2.1.1
+# This builds x64 + ARM64 exes and attaches them to the GitHub Release.
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: x86_64-pc-windows-msvc,aarch64-pc-windows-msvc
+
+      - name: Build x64
+        run: cargo build --release --target x86_64-pc-windows-msvc
+
+      - name: Build ARM64
+        run: cargo build --release --target aarch64-pc-windows-msvc
+
+      - name: Stage assets
+        shell: pwsh
+        run: |
+          Copy-Item target\x86_64-pc-windows-msvc\release\keepawake.exe keepawake-x64.exe
+          Copy-Item target\aarch64-pc-windows-msvc\release\keepawake.exe keepawake-arm64.exe
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            keepawake-x64.exe
+            keepawake-arm64.exe
+          generate_release_notes: true
